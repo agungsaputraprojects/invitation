@@ -418,9 +418,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 500);
         });
     }
-
-    console.log("🌺 Undangan Otonan Kembar telah dimuat dengan sempurna! 🌺");
-    console.log(
-        "💖 Selamat datang di upacara otonan Tunggasemi & Devinikha 💖"
-    );
 });
