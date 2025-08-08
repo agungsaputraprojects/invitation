@@ -1,0 +1,838 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 10px 0;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+}
+
+/* Header Section */
+.header {
+    background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+    );
+    background-size: 30px 30px;
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateX(20px) translateY(-20px) rotate(120deg);
+    }
+    66% {
+        transform: translateX(-15px) translateY(15px) rotate(240deg);
+    }
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.om-swastiastu {
+    font-family: "Dancing Script", cursive;
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.twins-name {
+    font-family: "Dancing Script", cursive;
+    font-size: 38px;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin: 25px 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Main Content */
+.main-content {
+    padding: 60px 40px;
+}
+
+/* Twins Section */
+.twins-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 50px 0;
+}
+
+.twin-card {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.twin-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.1;
+    }
+}
+
+.twin-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.twin-photo {
+    margin-bottom: 20px;
+}
+
+.twin-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 6px solid #ff6b6b;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.twin-photo img:hover {
+    transform: scale(1.1) rotate(5deg);
+    border-color: #feca57;
+}
+
+.twin-name {
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.twin-details {
+    margin-top: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.detail-row:hover {
+    background: rgba(255, 255, 255, 0.2);
+    padding-left: 10px;
+    border-radius: 8px;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.detail-value {
+    color: #34495e;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* Photo Gallery */
+.photo-gallery {
+    margin: 60px 0;
+}
+
+.gallery-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.main-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.main-photo-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+}
+
+.main-photo-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.main-photo-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.main-photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 20px;
+    font-family: "Dancing Script", cursive;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.photo-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.photo-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.photo-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.photo-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.photo-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.photo-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+.photo-item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+.photo-item:nth-child(7) {
+    animation-delay: 0.7s;
+}
+.photo-item:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.photo-item:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover .photo-overlay {
+    transform: translateY(0);
+}
+
+/* Parents Section */
+.parents-section {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    border-radius: 25px;
+    padding: 40px;
+    margin: 50px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.parents-section::before {
+    content: "🌺";
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 40px;
+    animation: rotate 6s linear infinite;
+    opacity: 0.7;
+}
+
+.parents-section::after {
+    content: "🌸";
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 40px;
+    animation: rotate 6s linear infinite reverse;
+    opacity: 0.7;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.parents-title {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.parents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.parent-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.parent-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.parent-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid #ff6b6b;
+    object-fit: cover;
+    transition: all 0.4s ease;
+    margin-bottom: 15px;
+}
+
+.parent-photo img:hover {
+    transform: scale(1.1) rotate(10deg);
+    border-color: #feca57;
+}
+
+.parent-name {
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.parent-role {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Event Details */
+.event-details {
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 3px solid #ff6b6b;
+    margin: 50px 0;
+    position: relative;
+}
+
+.event-details::before {
+    content: "🏛️";
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    font-size: 50px;
+    background: white;
+    padding: 0 10px;
+}
+
+.event-title {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.event-item {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.event-item:hover::before {
+    left: 100%;
+}
+
+.event-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.event-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.event-item:hover .event-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Ceremony Section */
+.ceremony-section {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    padding: 50px 40px;
+    margin: 50px 0;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.ceremony-title {
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.ceremony-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.ceremony-item {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    animation: slideIn 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.ceremony-item:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.ceremony-item:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.ceremony-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ceremony-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.ceremony-emoji {
+    font-size: 50px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Prayer Section */
+.prayer {
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 100px 40px 50px;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 2;
+    position: relative;
+}
+
+.prayer::before {
+    content: "🕉️";
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-size: 14px;
+}
+
+.thank-you {
+    font-family: "Dancing Script", cursive;
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-flower {
+    position: absolute;
+    font-size: 30px;
+    animation: float-flower 10s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes float-flower {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* JavaScript Animation Keyframes */
+@keyframes twin-particle-burst {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--endX), var(--endY)) scale(1.5) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes love-float {
+    0% {
+        transform: translate(-50%, 0) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -20px) scale(1) rotate(180deg);
+    }
+    100% {
+        transform: translate(calc(-50% + var(--endX)), var(--endY)) scale(0.5)
+            rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .main-content {
+        padding: 40px 20px;
+    }
+
+    .twins-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .main-photos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .parents-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .ceremony-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .twins-name {
+        font-size: 28px;
+    }
+
+    .header {
+        padding: 60px 30px;
+    }
+
+    .om-swastiastu {
+        font-size: 28px;
+    }
+
+    .gallery-title {
+        font-size: 28px;
+    }
+
+    .ceremony-title {
+        font-size: 28px;
+    }
+
+    .event-title {
+        font-size: 24px;
+    }
+
+    .parents-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 40px 20px;
+    }
+
+    .main-content {
+        padding: 30px 15px;
+    }
+
+    .twin-card {
+        padding: 20px;
+    }
+
+    .twin-photo img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .parent-photo img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .twins-name {
+        font-size: 24px;
+    }
+
+    .gallery-title,
+    .ceremony-title,
+    .event-title,
+    .parents-title {
+        font-size: 22px;
+    }
+
+    .ceremony-section,
+    .event-details,
+    .parents-section {
+        padding: 30px 20px;
+    }
+
+    .prayer {
+        padding: 40px 20px;
+    }
+
+    .footer {
+        padding: 30px 20px;
+    }
+}
