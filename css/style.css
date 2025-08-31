@@ -1,0 +1,959 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f8c8a6 0%, #e5a083 100%);
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f8c8a6 0%, #e5a083 100%);
+    z-index: -1;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.audio-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+}
+
+.main-content.active ~ .audio-toggle,
+.main-content.active + * .audio-toggle {
+    opacity: 1;
+    visibility: visible;
+}
+
+body:has(.main-content.active) .audio-toggle {
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-content.active ~ * .audio-toggle {
+    opacity: 1;
+    visibility: visible;
+}
+
+.audio-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #8b4513, #d2691e);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.audio-btn:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #a0521a, #e8791f);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.audio-icon {
+    font-size: 24px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: block;
+    user-select: none;
+}
+
+.audio-btn:hover .audio-icon {
+    transform: scale(1.2);
+}
+
+@keyframes audioWave {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.3;
+    }
+}
+
+.audio-btn.playing::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: audioWave 2s infinite;
+    pointer-events: none;
+}
+
+.audio-btn.playing::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: audioWave 2s infinite 0.5s;
+    pointer-events: none;
+}
+
+.cover-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8c8a6 0%, #e5a083 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-page::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>')
+        repeat;
+    animation: float 30s infinite linear;
+    z-index: 1;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+}
+
+.sanskrit-image {
+    width: 152px;
+    height: auto;
+    opacity: 0;
+    animation: gentleFadeInUp 0.8s ease-out 0.3s forwards;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    will-change: transform, opacity;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.sanskrit-image:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+}
+
+.title {
+    font-family: "Ruthie", cursive;
+    font-size: 52px;
+    font-weight: 400;
+    color: #3e2502ff;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: gentleFadeInUp 0.8s ease-out 0.6s forwards;
+    will-change: transform, opacity;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.title:hover {
+    transform: scale(1.05);
+    text-shadow: 0 5px 15px rgba(62, 37, 2, 0.3);
+}
+
+.subtitle {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 20px;
+    color: #3e2502ff;
+    opacity: 0;
+    animation: gentleFadeInUp 0.8s ease-out 0.9s forwards;
+    will-change: transform, opacity;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.subtitle:hover {
+    transform: translateY(-2px);
+    color: #8b4513;
+}
+
+.baby-photo {
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    margin: 12px 0;
+    opacity: 0;
+    animation: gentleZoomIn 1.5s ease-out 2s forwards;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    will-change: transform;
+    cursor: pointer;
+}
+
+.baby-photo:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+.guest-info {
+    opacity: 0;
+    animation: gentleFadeInUp 1.5s ease-out 2.5s forwards;
+    will-change: transform, opacity;
+}
+
+.guest-label {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 16px;
+    color: #110000ff;
+    margin-bottom: 10px;
+}
+
+.guest-title {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #110000ff;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.guest-title:hover {
+    transform: scale(1.02);
+    color: #8b4513;
+}
+
+.invitation-text {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 16px;
+    color: #110000ff;
+    max-width: 400px;
+    line-height: 1.5;
+    margin: 0 auto 30px;
+}
+
+.open-btn {
+    font-family: "Nanum Myeongjo", serif;
+    background: linear-gradient(45deg, #8b4513, #d2691e);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    animation: gentleFadeInUp 1.5s ease-out 3s forwards;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.open-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #a0521a, #e8791f);
+}
+
+.open-btn:active {
+    transform: translateY(-2px) scale(1.02);
+    transition: all 0.1s ease;
+}
+
+.main-content {
+    display: none;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8c8a6 0%, #e5a083 100%);
+}
+
+.main-content.active {
+    display: block;
+    animation: smoothSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.main-content.active ~ .audio-toggle {
+    opacity: 1;
+    visibility: visible;
+}
+
+.section {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    animation: gentleFadeIn 1s ease-out forwards;
+}
+
+.header-section {
+    padding-top: 60px;
+}
+
+.ornament-container {
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ornament-img {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+}
+
+.ornament-img:hover {
+    transform: rotate(360deg) scale(1.15);
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.3));
+}
+
+.blessing-text {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 20px;
+    color: #8b4513;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.blessing-text:hover {
+    transform: translateY(-3px);
+    color: #a0521a;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.baby-section {
+    padding: 30px 20px;
+}
+
+.baby-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.baby-content:hover {
+    transform: translateY(-5px);
+}
+
+.baby-content.reverse {
+    flex-direction: row;
+}
+
+.baby-portrait {
+    width: 200px;
+    height: 250px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    will-change: transform;
+    cursor: pointer;
+}
+
+.baby-portrait:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    z-index: 10;
+}
+
+.baby-info {
+    text-align: right;
+    flex: 1;
+    min-width: 200px;
+}
+
+.baby-content.reverse .baby-info {
+    text-align: left;
+}
+
+.baby-name {
+    font-family: "Ruthie", cursive;
+    font-size: 44px;
+    color: #3e2502ff;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    font-weight: 400;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.baby-name:hover {
+    transform: scale(1.05);
+    color: #8b4513;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.baby-birth {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 20px;
+    color: #3e2502ff;
+    font-style: italic;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.baby-birth:hover {
+    transform: translateX(5px);
+    color: #8b4513;
+}
+
+.divider-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.divider-img {
+    width: 750px;
+    height: auto;
+    opacity: 0.8;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+    cursor: pointer;
+}
+
+.divider-img:hover {
+    transform: scale(1.05) rotate(1deg);
+    opacity: 1;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+}
+
+.parent-title {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #3e2502ff;
+    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.parent-title:hover {
+    transform: scale(1.03);
+    color: #8b4513;
+}
+
+.parent-names {
+    font-family: "Ruthie", cursive;
+    font-size: 44px;
+    color: #3e2502ff;
+    font-style: normal;
+    font-weight: 400;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.parent-names:hover {
+    transform: scale(1.02);
+    color: #8b4513;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dan {
+    font-size: 0.9em;
+    font-style: normal;
+    color: #3e2502ff;
+}
+
+.event-section {
+    padding: 40px 20px 60px;
+}
+
+.section-title {
+    font-family: "Nanum Myeongjo", serif;
+    font-size: 32px;
+    color: #3e2502ff;
+    font-weight: 400;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.section-title:hover {
+    transform: scale(1.05);
+    color: #8b4513;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-details {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: "Nanum Myeongjo", serif;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+}
+
+.event-details:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.detail-item {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px 10px;
+}
+
+.detail-label {
+    font-weight: 400;
+    color: #3e2502ff;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    font-size: 20px;
+    color: #3e2502ff;
+    margin-top: 5px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.detail-value.large {
+    font-size: 1.4em;
+    font-weight: 400;
+    text-align: center;
+}
+
+.detail-value.location {
+    text-align: center;
+    line-height: 1.6;
+}
+
+.map-btn {
+    background: linear-gradient(45deg, #8b4513, #d2691e);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 30px 0 20px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    font-family: "Nanum Myeongjo", serif;
+    will-change: transform;
+}
+
+.map-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #a0521a, #e8791f);
+}
+
+.map-btn:active {
+    transform: translateY(-2px) scale(1.02);
+    transition: all 0.1s ease;
+}
+
+.map-embed {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
+    overflow: hidden;
+}
+
+.map-embed:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.map-embed iframe {
+    width: 100%;
+    min-height: 350px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-animate.from-left {
+    transform: translateX(-30px);
+}
+
+.scroll-animate.from-right {
+    transform: translateX(30px);
+}
+
+.scroll-animate.from-left.visible,
+.scroll-animate.from-right.visible {
+    transform: translateX(0);
+}
+
+.scroll-animate.zoom-in {
+    transform: scale(0.9);
+}
+
+.scroll-animate.zoom-in.visible {
+    transform: scale(1);
+}
+
+.scroll-animate.rotate-in {
+    transform: rotate(-5deg) scale(0.9);
+}
+
+.scroll-animate.rotate-in.visible {
+    transform: rotate(0deg) scale(1);
+}
+
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+}
+
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-50px) translateY(-50px);
+    }
+    100% {
+        transform: translateX(50px) translateY(50px);
+    }
+}
+
+@keyframes gentleFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gentleZoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes smoothSlideUp {
+    from {
+        transform: translateY(50vh);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes gentleFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float-up {
+    to {
+        transform: translateY(-110vh) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes smoothRipple {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: scale(0.3) translateY(20px);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    70% {
+        transform: scale(0.9) translateY(0);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.05);
+        filter: brightness(1.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 3em;
+    }
+
+    .sanskrit-image {
+        width: 100px;
+    }
+
+    .baby-photo {
+        width: auto;
+        height: 200px;
+    }
+
+    .baby-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .baby-content.reverse {
+        flex-direction: column;
+    }
+
+    .baby-info {
+        text-align: center;
+    }
+
+    .baby-content.reverse .baby-info {
+        text-align: center;
+    }
+
+    .baby-portrait {
+        width: 160px;
+        height: 200px;
+    }
+
+    .baby-name {
+        font-size: 2em;
+    }
+
+    .parent-names {
+        font-size: 2em;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .event-details {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    .ornament-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .divider-img {
+        width: 80%;
+    }
+
+    .blessing-text {
+        font-size: 0.9em;
+        padding: 0 10px;
+    }
+
+    .map-embed {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .map-embed iframe {
+        min-height: 250px;
+    }
+
+    .audio-toggle {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .audio-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .audio-icon {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.5em;
+    }
+
+    .sanskrit-image {
+        width: 80px;
+    }
+
+    .baby-photo {
+        width: auto;
+        height: 170px;
+    }
+
+    .baby-portrait {
+        width: 140px;
+        height: 180px;
+    }
+
+    .baby-name {
+        font-size: 2em;
+    }
+
+    .parent-names {
+        font-size: 2em;
+    }
+
+    .section {
+        padding: 30px 15px;
+    }
+
+    .event-details {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .divider-img {
+        width: 80%;
+    }
+
+    .ornament-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .blessing-text {
+        font-size: 0.85em;
+        line-height: 1.5;
+    }
+
+    .map-embed {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .map-embed iframe {
+        min-height: 200px;
+    }
+
+    .audio-toggle {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .audio-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .audio-icon {
+        font-size: 18px;
+    }
+}

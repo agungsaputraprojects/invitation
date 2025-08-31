@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Undangan - Upacara Nelu Bulanin</title>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://invite.pradnya.org/" />
+        <meta
+            property="og:title"
+            content="Undangan Upacara Nelu Bulanin - Tamu Undangan"
+        />
+        <meta
+            property="og:description"
+            content="Dengan memohon restu Ida Sang Hyang Widhi Wasa, kami mengundang Anda untuk hadir dalam Upacara SManusa Yadnya Nelu Bulanin. Tunggasemi Haprila & Devinikha Mayahita - 4 September 2025"
+        />
+        <meta
+            property="og:image"
+            content="https://invite.pradnya.org/assets/cover.jpg"
+        />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Undangan Upacara Nelu Bulanin" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://invite.pradnya.org/" />
+        <meta
+            name="twitter:title"
+            content="Undangan Upacara Nelu Bulanin - Tamu Undangan"
+        />
+        <meta
+            name="twitter:description"
+            content="Dengan memohon restu Ida Sang Hyang Widhi Wasa, kami mengundang Anda untuk hadir dalam Upacara Manusa Yadnya Nelu Bulanin. Tunggasemi Haprila & Devinikha Mayahita - 4 September 2025"
+        />
+        <meta
+            name="twitter:image"
+            content="https://invite.pradnya.org/assets/cover.jpg"
+        />
+
+        <meta
+            property="whatsapp:image"
+            content="https://invite.pradnya.org/assets/cover.jpg"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Ruthie&family=Nanum+Myeongjo:wght@400;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div class="parallax-bg"></div>
+
+        <div class="audio-toggle" id="audioToggle">
+            <button class="audio-btn" id="audioBtn" onclick="toggleAudio()">
+                <span class="audio-icon play" id="audioIcon">🔇</span>
+            </button>
+        </div>
+
+        <audio id="backgroundAudio" loop>
+            <source src="assets/audio/musik.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="cover-page" id="coverPage">
+            <div class="cover-content">
+                <img
+                    src="assets/sanskrit.svg"
+                    alt="Sanskrit Text"
+                    class="sanskrit-image scroll-animate"
+                />
+                <h1 class="title scroll-animate">Undangan</h1>
+                <p class="subtitle scroll-animate">Upacara Nelu Bulanin</p>
+
+                <img
+                    src="assets/cover.png"
+                    alt="Baby Photo"
+                    class="baby-photo scroll-animate"
+                    id="babyPhoto"
+                />
+
+                <div class="guest-info scroll-animate">
+                    <p class="guest-label">Kepada Bapak/Ibu/Saudara/i</p>
+                    <h2 class="guest-title">Tamu Undangan</h2>
+                    <p class="invitation-text">
+                        Tanpa Mengurangi Rasa Hormat, Kami Mengundang Anda Untuk
+                        Hadir Di Acara Keluarga Kami.
+                    </p>
+                </div>
+
+                <button
+                    class="open-btn scroll-animate"
+                    onclick="openInvitation()"
+                >
+                    Buka Undangan
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <section class="section header-section">
+                <div class="ornament-container scroll-animate">
+                    <img
+                        src="assets/logo.png"
+                        alt="Om Ornament"
+                        class="ornament-img"
+                    />
+                </div>
+                <p class="blessing-text scroll-animate">
+                    Dengan memohon restu Ida Sang Hyang Widhi Wasa, kami
+                    bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam
+                    Upacara Manusa Yadnya Nelu Bulanin
+                </p>
+            </section>
+
+            <section class="section baby-section">
+                <div class="baby-content scroll-animate">
+                    <img
+                        src="assets/foto-prila.png"
+                        alt="Tunggasemi Haprila"
+                        class="baby-portrait"
+                    />
+                    <div class="baby-info">
+                        <h2 class="baby-name">Tunggasemi Haprila</h2>
+                        <p class="baby-birth">Lahir: 11 April 2025</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section baby-section">
+                <div class="baby-content reverse scroll-animate">
+                    <img
+                        src="assets/foto-vinikha.png"
+                        alt="Devinikha Mayahita"
+                        class="baby-portrait"
+                    />
+                    <div class="baby-info">
+                        <h2 class="baby-name">Devinikha Mayahita</h2>
+                        <p class="baby-birth">Lahir: 22 Mei 2025</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider-container scroll-animate">
+                <img
+                    src="assets/divider.png"
+                    alt="Divider"
+                    class="divider-img"
+                />
+            </div>
+
+            <section class="section parents-section">
+                <div class="parent-info scroll-animate">
+                    <h3 class="parent-title">Putri dari</h3>
+                    <div class="parent-names">
+                        <p class="parent-father">Jusdek Dody Prathama</p>
+                        <p class="dan">dan</p>
+                        <p class="parent-mother">Purnama Dewi</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider-container scroll-animate">
+                <img
+                    src="assets/divider.png"
+                    alt="Divider"
+                    class="divider-img"
+                />
+            </div>
+
+            <section class="section event-section">
+                <h2 class="section-title scroll-animate">Waktu dan Tempat</h2>
+
+                <div class="event-details scroll-animate">
+                    <div class="detail-item">
+                        <div class="detail-value">4 September, 2025</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-value">
+                            Resepsi mulai jam 2 siang
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">Bertempat di</div>
+                        <div class="detail-value location">
+                            Banjar Dinas Megati Kelod, Desa Megati<br />
+                            Kecamatan Selemadeg Timur<br />
+                            Kabupaten Tabanan<br />
+                            Bali, Indonesia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-embed scroll-animate">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3946.001607876456!2d115.05697399999998!3d-8.499222999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwMjknNTcuMiJTIDExNcKwMDMnMjUuMSJF!5e0!3m2!1sid!2sid!4v1756666330335!5m2!1sid!2sid"
+                        width="100%"
+                        height="300"
+                        style="
+                            border: 0;
+                            border-radius: 15px;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                        "
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+
+                <button
+                    class="map-btn scroll-animate"
+                    onclick="openGoogleMaps()"
+                >
+                    Lokasi Google Map
+                </button>
+            </section>
+        </div>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>
